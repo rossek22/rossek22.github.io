@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WildBorn | Проверка</title>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?hl=ru" async defer></script>
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      // Handle form submission with CAPTCHA token
+      alert("Форма отправлена! В реальном приложении токен CAPTCHA будет проверен на сервере.");
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glow {
+      pointer-events: none;
+      background: radial-gradient(circle, #bbff0025 10%, #0000 70%);
+      width: 100vw;
+      height: 100vh;
+      animation: 3s infinite alternate blink;
+      position: absolute;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: .5
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#101010] text-lime-300">
+
+  <!-- Glowing background with pulse animation -->
+  <div class="glow"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 flex min-h-screen items-center justify-center px-4 py-10">
+    <div class="w-full max-w-md bg-[#202020A8] backdrop-blur-sm p-8 shadow-2xl border border-lime-900/30 rounded-2xl">
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-lime-500/10 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-lime-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        </div>
+        <h1 class="text-2xl font-bold text-lime-400 mb-2">Безопасная Проверка</h1>
+        <p class="text-lime-300/70">Пожалуйста, пройдите проверку CAPTCHA для продолжения</p>
+      </div>
+
+      <div class="relative">
+        <form onsubmit="handleSubmit(event)" class="space-y-6 relative z-10">
+          <div class="flex justify-center p-4 bg-[#181818A8] rounded-xl border border-lime-900/20">
+            <!-- Cloudflare Turnstile CAPTCHA -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAABCCkk-OUD_f3z14"></div>
+          </div>
+
+          <div class="mt-6 text-center">
+          </div>
+        </form>
+      </div>
+
+      <div class="mt-6 text-center text-lime-400/50 text-sm">
+        <p>Защищено Cloudflare Turnstile</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
